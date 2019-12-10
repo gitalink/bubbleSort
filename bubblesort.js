@@ -27,26 +27,21 @@
 //     // .unshift(bubbleSort(array.slice(0, -1)))
 // }
 
-function bubbleSort (array) {
-  console.log('startarray', array);
+function bubbleSort(array) {
 
   if (array.length <=1) return array;
 
   else {
-    console.log('in the else');
     for (let i = 0; i < array.length-1; i++) {
       let element = array[i];
       let nextElement = array[i+1];
-      if (element > nextElement) {
+      if (element < nextElement) {
         array[i] = nextElement;
         array[i+1] = element;
       }
     }
-    console.log('sort complete', array);
-    let sortedElement = array[array.length-1];
-    array.pop();
-    let newArray = [sortedElement].unshift(bubbleSort(array));
-    return newArray;
-
+    let largest = array.pop()
+    let nextLargest = bubbleSort(array);
+    return [largest].concat(nextLargest);
   }
 }
